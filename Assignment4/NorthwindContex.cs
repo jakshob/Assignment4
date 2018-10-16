@@ -18,7 +18,7 @@ namespace Assignment4
         {
             base.OnConfiguring(optionsBuilder);
             //optionsBuilder.UseNpgsql("host=localhost;db=northwind;uid=postgres;pwd=vfh");
-            optionsBuilder.UseNpgsql("host=localhost;db=northwind;uid=postgres;pwd=vhf");
+            optionsBuilder.UseNpgsql("host=localhost;db=northwind;uid=postgres;pwd=olivia");
             
             // optionsBuilder.UseLoggerFactory(MyLoggerFactory)
             //     .EnableSensitiveDataLogging();
