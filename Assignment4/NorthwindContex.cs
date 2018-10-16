@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 
-namespace EfEx1
+
+namespace Assignment4
 {
     public class NorthwindContex : DbContext
     {
@@ -17,9 +17,11 @@ namespace EfEx1
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseNpgsql("host=localhost;db=northwind;uid=postgres;pwd=vfh");
-            optionsBuilder.UseLoggerFactory(MyLoggerFactory)
-                .EnableSensitiveDataLogging();
+            //optionsBuilder.UseNpgsql("host=localhost;db=northwind;uid=postgres;pwd=vfh");
+            optionsBuilder.UseNpgsql("host=localhost;db=northwind;uid=postgres;pwd=vhf");
+            
+            // optionsBuilder.UseLoggerFactory(MyLoggerFactory)
+            //     .EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,12 +34,12 @@ namespace EfEx1
             modelBuilder.Entity<Category>().Property(x => x.Description).HasColumnName("description");
         }
 
-        public static readonly LoggerFactory MyLoggerFactory
-            = new LoggerFactory(new[]
-            {
-                new ConsoleLoggerProvider((category, level)
-                    => category == DbLoggerCategory.Database.Command.Name
-                       && level == LogLevel.Information, true)
-            });
+        //public static readonly LoggerFactory MyLoggerFactory
+        //    = new LoggerFactory(new[]
+        //    {
+        //        new ConsoleLoggerProvider((category, level)
+        //            => category == DbLoggerCategory.Database.Command.Name
+        //               && level == LogLevel.Information, true)
+        //    });
     }
 }

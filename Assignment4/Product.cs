@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfEx1
+namespace Assignment4
 {
     [Table("products")]
     public class Product
