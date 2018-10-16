@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assignment4;
-using Remotion.Linq.Utilities;
 
 namespace Assignment4
 {
@@ -18,63 +17,54 @@ namespace Assignment4
             }
         }
 
-        public Category GetCategory(int index)
-        {
+        public Category GetCategory(int inputCatId) {
 
             using (var db = new NorthwindContex())
             {
-                return db.Categories.Find(index);
+                return db.Categories.Find(inputCatId);
             }
-
         }
 
-        public Category CreateCategory(string name, string description)
-        {
+        public Category CreateCategory(string categoryName, string catDescription) {
+
             using (var db = new NorthwindContex())
             {
-                var cat = new Category();
-                List<Category> tempList = db.Categories.ToList<Category>();
-
-                var item = tempList[tempList.Count - 1];
-
-
-                db.Categories.Add(new Category()
+                /*
+                int newId = Convert.ToInt32(from cat in db.Categories
+                             orderby cat.Id descending
+                             select cat.Id);
+                */
+                Category newCat;
+                db.Categories.Add(newCat = new Category()
                 {
-                    Id = item.Id + 1,
-                    Name = name,
-                    Description = description
-                });
 
+                    //ÆNDRE! Det må ikke være hardcoded
+                    Id = 9,
+                    Name = categoryName,
+                    Description = catDescription
+
+                });
+                db.SaveChanges();
+                return newCat;
+            }
+            
+        }
+
+        public bool DeleteCategory(int inputCatId) {
+
+            using (var db = new NorthwindContex())
+            {
+
+                var cat = db.Categories.First(c => c.Id == inputCatId);
+                db.Categories.Remove(cat);
                 db.SaveChanges();
 
-                foreach (var category in db.Categories)
-                {
-                    if (category.Name == name) return category;
-                }
-
-                return cat;
-
+                return true;
             }
-        }
-        
-        public bool DeleteCategory(int i)
-        {
-            using (var db = new NorthwindContex())
-            {
-                foreach (var elem in db.Categories)
-                {
-                    if (elem.Id == i)
-                    {
-                        db.Categories.Remove(elem);
-                        db.SaveChanges();
-                        return true;
-                    }
-                    else return false;
-                }
 
-                return false;
 
-            }
+
+
         }
     }
 }
