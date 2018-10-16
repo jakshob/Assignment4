@@ -65,7 +65,7 @@ namespace Assignment4.Tests
           var result = service.DeleteCategory(-1);
           Assert.False(result);
       }
-        /*
+        
       [Fact]
       public void UpdateCategory_NewNameAndDescription_UpdateWithNewValues()
       {
@@ -83,7 +83,7 @@ namespace Assignment4.Tests
           // cleanup
           service.DeleteCategory(category.Id);
       }
-
+        /*
       [Fact]
       public void UpdateCategory_InvalidID_ReturnsFalse()
       {

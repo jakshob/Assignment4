@@ -70,10 +70,24 @@ namespace Assignment4
                     return false;
                 }
             }
+            
+        }
 
+        public bool UpdateCategory(int inputId, string updateName, string updateDesc) {
 
+            using (var db = new NorthwindContex()) {
 
+                var chosenCategory = from cat in db.Categories
+                                     where cat.Id == inputId
+                                     select cat;
 
+                foreach (Category cat in chosenCategory){
+                    cat.Name = updateName;
+                    cat.Description = updateDesc;
+                }
+                db.SaveChanges();
+                return true;
+            }
         }
     }
 }
