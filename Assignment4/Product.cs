@@ -13,6 +13,10 @@ namespace Assignment4
         [Column("productid")]
         public int Id { get; set; }
 
+        public int UnitPrice { get; set; }
+        public int UnitsInStock { get; set; }
+        public string QuantityPerUnit { get; set; }
+
         [Column("productname")]
         public string Name { get; set; }
         [Column("categoryid")]
