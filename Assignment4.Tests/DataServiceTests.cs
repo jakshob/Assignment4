@@ -83,7 +83,7 @@ namespace Assignment4.Tests
           // cleanup
           service.DeleteCategory(category.Id);
       }
-        /*
+        
       [Fact]
       public void UpdateCategory_InvalidID_ReturnsFalse()
       {
@@ -93,7 +93,7 @@ namespace Assignment4.Tests
       }
 
       // products 
-
+      /*
       [Fact]
       public void Product_Object_HasIdNameUnitPriceQuantityPerUnitAndUnitsInStock()
       {

@@ -73,20 +73,29 @@ namespace Assignment4
             
         }
 
-        public bool UpdateCategory(int inputId, string updateName, string updateDesc) {
+        public bool UpdateCategory(int inputCatId, string updateName, string updateDesc) {
 
             using (var db = new NorthwindContex()) {
 
-                var chosenCategory = from cat in db.Categories
-                                     where cat.Id == inputId
-                                     select cat;
+                var record = db.Categories.FirstOrDefault(r => r.Id == inputCatId);
+                if (record != null)
+                {
+                    var chosenCategory = from cat in db.Categories
+                                         where cat.Id == inputCatId
+                                         select cat;
 
-                foreach (Category cat in chosenCategory){
-                    cat.Name = updateName;
-                    cat.Description = updateDesc;
+                    foreach (Category cat in chosenCategory)
+                    {
+                        cat.Name = updateName;
+                        cat.Description = updateDesc;
+                    }
+                    db.SaveChanges();
+                    return true;
                 }
-                db.SaveChanges();
-                return true;
+                else
+                {
+                    return false;
+                }
             }
         }
     }
