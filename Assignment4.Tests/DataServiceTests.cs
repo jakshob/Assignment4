@@ -65,7 +65,7 @@ namespace Assignment4.Tests
           var result = service.DeleteCategory(-1);
           Assert.False(result);
       }
-        /*
+        
       [Fact]
       public void UpdateCategory_NewNameAndDescription_UpdateWithNewValues()
       {
@@ -83,7 +83,7 @@ namespace Assignment4.Tests
           // cleanup
           service.DeleteCategory(category.Id);
       }
-
+        
       [Fact]
       public void UpdateCategory_InvalidID_ReturnsFalse()
       {
@@ -93,7 +93,7 @@ namespace Assignment4.Tests
       }
 
       // products 
-
+      
       [Fact]
       public void Product_Object_HasIdNameUnitPriceQuantityPerUnitAndUnitsInStock()
       {
@@ -104,7 +104,7 @@ namespace Assignment4.Tests
           Assert.Null(product.QuantityPerUnit);
           Assert.Equal(0, product.UnitsInStock);
       }
-
+        /*
       [Fact]
       public void GetProduct_ValidId_ReturnsProductWithCategory()
       {
