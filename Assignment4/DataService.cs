@@ -55,11 +55,20 @@ namespace Assignment4
             using (var db = new NorthwindContex())
             {
 
-                var cat = db.Categories.First(c => c.Id == inputCatId);
-                db.Categories.Remove(cat);
-                db.SaveChanges();
+                var record = db.Categories.FirstOrDefault(r => r.Id == inputCatId);
+                if (record != null)
+                {
 
-                return true;
+                    var cat = db.Categories.First(c => c.Id == inputCatId);
+                    db.Categories.Remove(cat);
+                    db.SaveChanges();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
 
