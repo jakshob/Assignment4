@@ -148,7 +148,7 @@ namespace Assignment4.Tests
           Assert.Null(order.ShipName);
           Assert.Null(order.ShipCity);
       }
-
+        
       [Fact]
       public void GetOrder_ValidId_ReturnsCompleteOrder()
       {
