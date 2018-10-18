@@ -111,5 +111,17 @@ namespace Assignment4
             }
 
         }
+
+		public List<Product> GetProductByName(string searchQueryString){
+			using (var db = new NorthwindContex()){
+				var productList = new List<Product>{};
+				foreach (Product p in db.Products){
+					if(p.Name.ToLower().Contains(searchQueryString)){
+						productList.Add(p);
+					}
+				}
+				return productList;
+			}
+		}
     }
 }

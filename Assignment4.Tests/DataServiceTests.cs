@@ -134,7 +134,8 @@ namespace Assignment4.Tests
           Assert.Equal("Beverages", products.First().Category.Name);
           Assert.Equal("Lakkalikööri", products.Last().Name);
       }
-
+	  */
+	/*
       // orders 
       [Fact]
       public void Order_Object_HasIdDatesAndOrderDetails()
