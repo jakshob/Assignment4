@@ -22,7 +22,6 @@ namespace Assignment4
         [Column("categoryid")]
         public int CategoryId { get; set; }
 
-        //PROBLEM HER!: - Hvordan tilgår man category for at få Name fra ID uden at bruge Metodekald?
         public Category Category { get; set; }
     }
 }

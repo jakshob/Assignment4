@@ -105,7 +105,9 @@ namespace Assignment4
 
             using (var db = new NorthwindContex())
             {
-                return db.Products.Find(inputProductId);
+                Product tempProduct = db.Products.Find(inputProductId);
+                tempProduct.Category = db.Categories.Find(tempProduct.CategoryId);
+                return tempProduct;
             }
 
         }
