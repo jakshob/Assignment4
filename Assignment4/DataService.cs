@@ -111,5 +111,28 @@ namespace Assignment4
             }
 
         }
+
+
+        
+        public List<Product> GetProductByCategory(int inputCategoryId) { 
+
+            using (var db = new NorthwindContex())
+            {
+
+                var listByCategory = db.Products.Where(p => p.CategoryId == inputCategoryId);
+
+                foreach (Product prod in listByCategory) {
+
+                    prod.Category = db.Categories.Find(prod.CategoryId);
+                }
+
+                var outputListByCategory = listByCategory.ToList();
+
+
+                return outputListByCategory;
+            }
+    
+        }
+        
     }
 }

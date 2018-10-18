@@ -113,7 +113,7 @@ namespace Assignment4.Tests
           Assert.Equal("Chai", product.Name);
           Assert.Equal("Beverages", product.Category.Name);
       }
-        
+       /* 
       [Fact]
       public void GetProduct_NameSubString_ReturnsProductsThatMachesTheSubString()
       {
@@ -123,7 +123,7 @@ namespace Assignment4.Tests
           Assert.Equal("Chef Anton's Cajun Seasoning", products.First().Name);
           Assert.Equal("Guaraná Fantástica", products.Last().Name);
       }
-        /*
+        */
       [Fact]
       public void GetProductsByCategory_ValidId_ReturnsProductWithCategory()
       {
@@ -134,7 +134,7 @@ namespace Assignment4.Tests
           Assert.Equal("Beverages", products.First().Category.Name);
           Assert.Equal("Lakkalikööri", products.Last().Name);
       }
-
+        /*
       // orders 
       [Fact]
       public void Order_Object_HasIdDatesAndOrderDetails()
