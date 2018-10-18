@@ -142,5 +142,19 @@ namespace Assignment4
 			}
 
 		}
+
+		public Order GetOrder(int inputOrderId ) {
+
+			using (var db = new NorthwindContex()) {
+				Order tempOrder = db.Orders.Find(inputOrderId);
+				foreach (OrderDetails OrdDet in db.OrderDetailsTable) {
+					if(OrdDet.OrderId == inputOrderId) {
+						tempOrder.OrderDetails.Add(OrdDet);
+					}
+				}
+				return tempOrder;
+			}
+		}
+		
 	}
 }
