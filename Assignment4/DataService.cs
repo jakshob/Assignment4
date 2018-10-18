@@ -34,12 +34,14 @@ namespace Assignment4
                              orderby cat.Id descending
                              select cat.Id);
                 */
+
+               
                 Category newCat;
                 db.Categories.Add(newCat = new Category()
                 {
 
                     //ÆNDRE! Det må ikke være hardcoded
-                    Id = 9,
+                    Id = db.Categories.Max(x => x.Id)+1,
                     Name = categoryName,
                     Description = catDescription
 
@@ -97,6 +99,15 @@ namespace Assignment4
                     return false;
                 }
             }
+        }
+
+        public Product GetProduct(int inputProductId) {
+
+            using (var db = new NorthwindContex())
+            {
+                return db.Products.Find(inputProductId);
+            }
+
         }
     }
 }
