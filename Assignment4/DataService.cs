@@ -127,10 +127,13 @@ namespace Assignment4
 		public List<Product> GetProductByCategory(int inputCategoryId) {
 
 			using (var db = new NorthwindContex()) {
+                
+                //OrderBy fordi databasen var lidt fucked med underlige tegn og rækkefølger..
+                var listByCategory = db.Products.OrderBy(x => x.Id)
+                    .Where(p => p.CategoryId == inputCategoryId);
+  
 
-				var listByCategory = db.Products.Where(p => p.CategoryId == inputCategoryId);
-
-				foreach (Product prod in listByCategory) {
+                foreach (Product prod in listByCategory) {
 
 					prod.Category = db.Categories.Find(prod.CategoryId);
 				}
