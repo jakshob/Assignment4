@@ -104,7 +104,7 @@ namespace Assignment4.Tests
           Assert.Null(product.QuantityPerUnit);
           Assert.Equal(0, product.UnitsInStock);
       }
-        /*
+        
       [Fact]
       public void GetProduct_ValidId_ReturnsProductWithCategory()
       {
@@ -113,7 +113,7 @@ namespace Assignment4.Tests
           Assert.Equal("Chai", product.Name);
           Assert.Equal("Beverages", product.Category.Name);
       }
-
+        /*
       [Fact]
       public void GetProduct_NameSubString_ReturnsProductsThatMachesTheSubString()
       {
