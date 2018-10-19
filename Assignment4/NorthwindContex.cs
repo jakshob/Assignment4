@@ -52,7 +52,7 @@ namespace Assignment4
 			modelBuilder.Entity<Order>().Property(x => x.Freight).HasColumnName("freight");
 			modelBuilder.Entity<Order>().Property(x => x.ShipName).HasColumnName("shipname");
 			modelBuilder.Entity<Order>().Property(x => x.ShipCity).HasColumnName("shipcity");
-			
+
 			//OrderDetails
 			modelBuilder.Entity<OrderDetails>().ToTable("orderdetails");
 			modelBuilder.Entity<OrderDetails>().Property(x => x.OrderId).HasColumnName("orderid");
@@ -60,7 +60,8 @@ namespace Assignment4
 			modelBuilder.Entity<OrderDetails>().Property(x => x.UnitPrice).HasColumnName("unitprice");
 			modelBuilder.Entity<OrderDetails>().Property(x => x.Quantity).HasColumnName("quantity");
 			modelBuilder.Entity<OrderDetails>().Property(x => x.Discount).HasColumnName("discount");
-			
+			modelBuilder.Entity<OrderDetails>().HasKey(x => new { x.OrderId, x.ProductId });
+
 		}
 
         //public static readonly LoggerFactory MyLoggerFactory

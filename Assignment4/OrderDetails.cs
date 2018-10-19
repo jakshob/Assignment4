@@ -11,8 +11,6 @@ namespace Assignment4
     [Table("orderdetails")]
     public class OrderDetails
     {
-		[Key]
-		public int Id { get; set; }
 		public int OrderId { get; set; }
 		public int UnitPrice { get; set; }
 		public int Quantity { get; set; }
