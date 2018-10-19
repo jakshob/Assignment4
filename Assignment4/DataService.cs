@@ -150,14 +150,33 @@ namespace Assignment4
 
 			using (var db = new NorthwindContex()) {
 				Order tempOrder = db.Orders.Find(inputOrderId);
-				foreach (OrderDetails OrdDet in db.OrderDetailsTable) {
-					if(OrdDet.OrderId == inputOrderId) {
-						tempOrder.OrderDetails.Add(OrdDet);
-					}
-				}
+				tempOrder.OrderDetails = GetOrderDetailsOrderId(inputOrderId);
 				return tempOrder;
 			}
 		}
-		
+
+		public List<OrderDetails> GetOrderDetailsOrderId(int inputOrderId) {
+			using (var db = new NorthwindContex()) {
+				var tempList = db.OrderDetailsTable.Where(x => x.OrderId == inputOrderId).ToList();
+				foreach (OrderDetails OrdDet in tempList) {
+					OrdDet.Product = db.Products.Find(OrdDet.ProductId);
+					OrdDet.Order = db.Orders.Find(OrdDet.OrderId);
+					OrdDet.Product.Category = db.Categories.Find(OrdDet.Product.CategoryId);
+				}
+				return tempList;
+			}
+		}
+
+		public List<OrderDetails> GetOrderDetailsProductId(int inputProductId) {
+			using (var db = new NorthwindContex()) {
+				var tempList = db.OrderDetailsTable.Where(x => x.ProductId == inputProductId).ToList();
+				foreach (OrderDetails OrdDet in tempList) {
+					OrdDet.Product = db.Products.Find(OrdDet.ProductId);
+					OrdDet.Order = db.Orders.Find(OrdDet.OrderId);
+					OrdDet.Product.Category = db.Categories.Find(OrdDet.Product.CategoryId);
+				}
+				return tempList;
+			}
+		}
 	}
 }
