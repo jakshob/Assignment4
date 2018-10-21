@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Assignment4;
 
 namespace Assignment4
 {
@@ -11,7 +9,7 @@ namespace Assignment4
 
         public List<Category> GetCategories()
         {
-            using (var db = new NorthwindContex())
+            using (var db = new NorthwindContext())
             {
                 return db.Categories.ToList();
             }
@@ -19,7 +17,7 @@ namespace Assignment4
 
         public Category GetCategory(int inputCatId) {
 
-            using (var db = new NorthwindContex())
+            using (var db = new NorthwindContext())
             {
                 return db.Categories.Find(inputCatId);
             }
@@ -27,7 +25,7 @@ namespace Assignment4
 
         public Category CreateCategory(string categoryName, string catDescription) {
 
-            using (var db = new NorthwindContex())
+            using (var db = new NorthwindContext())
             {
                 /*
                 int newId = Convert.ToInt32(from cat in db.Categories
@@ -54,7 +52,7 @@ namespace Assignment4
 
         public bool DeleteCategory(int inputCatId) {
 
-            using (var db = new NorthwindContex())
+            using (var db = new NorthwindContext())
             {
 
                 var record = db.Categories.FirstOrDefault(r => r.Id == inputCatId);
@@ -77,7 +75,7 @@ namespace Assignment4
 
         public bool UpdateCategory(int inputCatId, string updateName, string updateDesc) {
 
-            using (var db = new NorthwindContex()) {
+            using (var db = new NorthwindContext()) {
 
                 var record = db.Categories.FirstOrDefault(r => r.Id == inputCatId);
                 if (record != null)
@@ -103,7 +101,7 @@ namespace Assignment4
 
         public Product GetProduct(int inputProductId) {
 
-            using (var db = new NorthwindContex())
+            using (var db = new NorthwindContext())
             {
                 Product tempProduct = db.Products.Find(inputProductId);
                 tempProduct.Category = db.Categories.Find(tempProduct.CategoryId);
@@ -113,8 +111,8 @@ namespace Assignment4
         }
 
 		public List<Product> GetProductByName(string searchQueryString){
-			using (var db = new NorthwindContex()){
-				var productList = new List<Product>{};
+			using (var db = new NorthwindContext()){
+				var productList = new List<Product>();
 				foreach (Product p in db.Products){
 					if(p.Name.ToLower().Contains(searchQueryString)){
 						productList.Add(p);
@@ -126,7 +124,7 @@ namespace Assignment4
 
 		public List<Product> GetProductByCategory(int inputCategoryId) {
 
-			using (var db = new NorthwindContex()) {
+			using (var db = new NorthwindContext()) {
                 
                 //OrderBy fordi databasen var lidt fucked med underlige tegn og rækkefølger..
                 var listByCategory = db.Products.OrderBy(x => x.Id)
@@ -148,7 +146,7 @@ namespace Assignment4
 
 		public Order GetOrder(int inputOrderId ) {
 
-			using (var db = new NorthwindContex()) {
+			using (var db = new NorthwindContext()) {
 				Order tempOrder = db.Orders.Find(inputOrderId);
 				tempOrder.OrderDetails = GetOrderDetailsByOrderId(inputOrderId);
 				return tempOrder;
@@ -156,7 +154,7 @@ namespace Assignment4
 		}
 
 		public List<OrderDetails> GetOrderDetailsByOrderId(int inputOrderId) {
-			using (var db = new NorthwindContex()) {
+			using (var db = new NorthwindContext()) {
 				var tempList = db.OrderDetailsTable.Where(x => x.OrderId == inputOrderId).ToList();
 				foreach (OrderDetails ordet in tempList) {
 					ordet.Product = db.Products.Find(ordet.ProductId);
@@ -168,7 +166,7 @@ namespace Assignment4
 		}
 
 		public List<OrderDetails> GetOrderDetailsByProductId(int inputProductId) {
-			using (var db = new NorthwindContex()) {
+			using (var db = new NorthwindContext()) {
 				var tempList = db.OrderDetailsTable.Where(x => x.ProductId == inputProductId).OrderBy(x => x.OrderId).ToList();
 				foreach (OrderDetails ordet in tempList) {
 					ordet.Product = db.Products.Find(ordet.ProductId);
@@ -180,8 +178,8 @@ namespace Assignment4
 		}
 
 		public List<Order> GetOrders() {
-			using (var db = new NorthwindContex()) {
-				var tempList = new List<Order> { };
+			using (var db = new NorthwindContext()) {
+				var tempList = new List<Order>();
 				foreach(Order ord in db.Orders) {
 					var tempOrd = GetOrder(ord.Id);
 					tempList.Add(tempOrd);
