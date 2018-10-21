@@ -13,7 +13,7 @@ namespace Assignment4
 
 		public DateTime Date { get; set; }
 		public DateTime Required { get; set; }
-		public DateTime Shipped { get; set; }
+		public Nullable<DateTime> Shipped { get; set; }
 
 		public int Freight { get; set; }
 

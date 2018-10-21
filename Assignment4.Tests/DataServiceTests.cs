@@ -158,7 +158,7 @@ namespace Assignment4.Tests
           Assert.Equal("Queso Cabrales", order.OrderDetails.First().Product.Name);
           Assert.Equal("Dairy Products", order.OrderDetails.First().Product.Category.Name);
       }
-		/*
+		
       [Fact]
       public void GetOrders()
       {
@@ -166,8 +166,7 @@ namespace Assignment4.Tests
           var orders = service.GetOrders();
           Assert.Equal(830, orders.Count);
       }
-
-
+		
       // orderdetails 
       [Fact]
       public void OrderDetails_Object_HasOrderProductUnitPriceQuantityAndDiscount()
@@ -181,7 +180,7 @@ namespace Assignment4.Tests
           Assert.Equal(0.0, orderDetails.Quantity);
           Assert.Equal(0.0, orderDetails.Discount);
       }
-
+	  
       [Fact]
       public void GetOrderDetailByOrderId_ValidId_ReturnsProductNameUnitPriceAndQuantity()
       {
@@ -192,7 +191,7 @@ namespace Assignment4.Tests
           Assert.Equal(14, orderDetails.First().UnitPrice);
           Assert.Equal(12, orderDetails.First().Quantity);
       }
-
+	  
       [Fact]
       public void GetOrderDetailByProductId_ValidId_ReturnsOrderDateUnitPriceAndQuantity()
       {
@@ -203,6 +202,5 @@ namespace Assignment4.Tests
           Assert.Equal(14, orderDetails.First().UnitPrice);
           Assert.Equal(12, orderDetails.First().Quantity);
       }
-      */
-    }
+	}
 }

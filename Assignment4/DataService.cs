@@ -150,33 +150,45 @@ namespace Assignment4
 
 			using (var db = new NorthwindContex()) {
 				Order tempOrder = db.Orders.Find(inputOrderId);
-				tempOrder.OrderDetails = GetOrderDetailsOrderId(inputOrderId);
+				tempOrder.OrderDetails = GetOrderDetailsByOrderId(inputOrderId);
 				return tempOrder;
 			}
 		}
 
-		public List<OrderDetails> GetOrderDetailsOrderId(int inputOrderId) {
+		public List<OrderDetails> GetOrderDetailsByOrderId(int inputOrderId) {
 			using (var db = new NorthwindContex()) {
 				var tempList = db.OrderDetailsTable.Where(x => x.OrderId == inputOrderId).ToList();
-				foreach (OrderDetails OrdDet in tempList) {
-					OrdDet.Product = db.Products.Find(OrdDet.ProductId);
-					OrdDet.Order = db.Orders.Find(OrdDet.OrderId);
-					OrdDet.Product.Category = db.Categories.Find(OrdDet.Product.CategoryId);
+				foreach (OrderDetails ordet in tempList) {
+					ordet.Product = db.Products.Find(ordet.ProductId);
+					ordet.Order = db.Orders.Find(ordet.OrderId);
+					ordet.Product.Category = db.Categories.Find(ordet.Product.CategoryId);
 				}
 				return tempList;
 			}
 		}
 
-		public List<OrderDetails> GetOrderDetailsProductId(int inputProductId) {
+		public List<OrderDetails> GetOrderDetailsByProductId(int inputProductId) {
 			using (var db = new NorthwindContex()) {
-				var tempList = db.OrderDetailsTable.Where(x => x.ProductId == inputProductId).ToList();
-				foreach (OrderDetails OrdDet in tempList) {
-					OrdDet.Product = db.Products.Find(OrdDet.ProductId);
-					OrdDet.Order = db.Orders.Find(OrdDet.OrderId);
-					OrdDet.Product.Category = db.Categories.Find(OrdDet.Product.CategoryId);
+				var tempList = db.OrderDetailsTable.Where(x => x.ProductId == inputProductId).OrderBy(x => x.OrderId).ToList();
+				foreach (OrderDetails ordet in tempList) {
+					ordet.Product = db.Products.Find(ordet.ProductId);
+					ordet.Order = db.Orders.Find(ordet.OrderId);
+					ordet.Product.Category = db.Categories.Find(ordet.Product.CategoryId);
 				}
 				return tempList;
 			}
 		}
+
+		public List<Order> GetOrders() {
+			using (var db = new NorthwindContex()) {
+				var tempList = new List<Order> { };
+				foreach(Order ord in db.Orders) {
+					var tempOrd = GetOrder(ord.Id);
+					tempList.Add(tempOrd);
+				}
+				return tempList;
+			}
+		}
+		
 	}
 }
